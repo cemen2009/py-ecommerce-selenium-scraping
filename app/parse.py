@@ -8,6 +8,7 @@ from urllib.parse import urljoin
 import csv
 import time
 
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from tqdm import tqdm
@@ -46,7 +47,7 @@ def accept_cookies(driver: webdriver.Chrome) -> None:
         pass
 
 
-def parse_product_element(element: webdriver) -> Product:
+def parse_product_element(element: WebElement) -> Product:
     title = element.find_element(By.CLASS_NAME, "title").get_attribute("title")
     description = element.find_element(By.CLASS_NAME, "description").text
     price_text = element.find_element(
